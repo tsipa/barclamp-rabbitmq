@@ -72,6 +72,7 @@ package "rabbitmq-server"
 bash "Enable rabbit management" do
   code <<-'EOH'
 /usr/lib/rabbitmq/bin/rabbitmq-plugins enable rabbitmq_management
+ps axu | grep '^rabbitmq' | awk '{print $2}' | xargs kill
 /etc/init.d/rabbitmq-server restart
 exit 0
 EOH
